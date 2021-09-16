@@ -1,5 +1,13 @@
 $password = $args[0]
+$file = $args[1]
 $OK = 0
+
+if ( $args[0] -eq "-f") {
+    $password = Get-ChildItem $file -Recurse -Include *.txt | Get-Content
+}
+else {
+    $password = $args[0]
+}
 
 # Includes 10 or more chars validation
 if ($password.Length -lt 10) {
