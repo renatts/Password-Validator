@@ -4,7 +4,8 @@
  - Contain both alphabet and number.
  - Include both the small and capital case letters.
 
-## Bash script
+
+## Bash script 
 1. Download the script or clone it by using `git clone`.
 2. Open the Bash CLI.
 3. For the `main` run the following command:  
@@ -27,3 +28,6 @@
 ```diff 
 ./pass-validator.ps1 -f "/path/yourfile.txt"
 ```     
+---
+
+![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
