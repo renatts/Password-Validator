@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OK=0
+ERROR=0
 
 # Colors
 GREEN="\033[1;92m" # Success
@@ -17,34 +17,34 @@ else
 fi
 
 # Includes 10 or more chars validation
-if [[ ${#PASSWORD} -ge 10 ]];
-then ((OK++))
-else echo -e "${RED}ERROR: Password is shorter than 10 characters";
+if ! [[ ${#PASSWORD} -ge 10 ]];
+then 
+    echo -e "${RED}ERROR: Password is shorter than 10 characters" && ERROR=1
 fi
 
 # Includes capitals validation
-if [[ $PASSWORD =~ [[:upper:]] ]];
-then ((OK++))
-else echo -e "${RED}ERROR: Password doesn't include capitals";
+if ! [[ $PASSWORD =~ [[:upper:]] ]];
+then 
+    echo -e "${RED}ERROR: Password doesn't include capitals" && ERROR=1 
 fi
 
 # Includes lowercase letters validation
-if [[ $PASSWORD =~ [[:lower:]] ]];
-then ((OK++))
-else echo -e "${RED}ERROR: Password doesn't include lowercase letters";
+if ! [[ $PASSWORD =~ [[:lower:]] ]];
+then  
+    echo -e "${RED}ERROR: Password doesn't include lowercase letters" && ERROR=1 
 fi
 
 # Includes digits validation
-if [[ $PASSWORD =~ [[:digit:]] ]];
-then ((OK++))
-else echo -e "${RED}ERROR: Password doesn't include digits";
+if ! [[ $PASSWORD =~ [[:digit:]] ]];
+then 
+    echo -e "${RED}ERROR: Password doesn't include digits" && ERROR=1
 fi
 
 # Check OK status, if OK isn't equal to 4, means he isn't passed all 4 validations
-if [[ $OK == 4 ]];
+if [[ $ERROR -eq 1 ]];
 then
-    echo -e "${GREEN}Your password is correct! ($PASSWORD)" && exit 0
-else
     echo -e "${RED}Bad Password..." && exit 1
+else
+    echo -e "${GREEN}Your password is correct!" && exit 0
 fi
 
